@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+
+    "name": "ReelNews Plugin",
+    "description": "This extension will for right now get the publisher and title",
+    "version": "1.0",
+    
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    },
+    "permissions": [
+        "activeTab"
+    ]
+}
