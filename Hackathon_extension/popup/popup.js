@@ -1,5 +1,5 @@
 const analyze = document.getElementById("analyze");
-const url = 'https://reelnewsserver.azurewebsites.net/article';
+const url_1 = 'https://reelnewsserver.azurewebsites.net/article';
 var info = {
     title : ""
 }
@@ -7,8 +7,8 @@ var info = {
 if (analyze) {
   analyze.onclick = function() {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        document.write(`<h3>Current Tab Info: <h3>`);
-        document.write(`<ul>`);
+        document.write(`<h3>Recommended Articles: </h3>`);
+        document.write(`<ul>`)
         var url = "" + tabs[0].url;
         var url_parts = url.split('.');
         var publisher = url_parts[1];
@@ -16,18 +16,33 @@ if (analyze) {
         info.title = title;
         // info.publisher = publisher;
         // document.write(`<li>${info.publisher}</li>`);
-        document.write(`<li>${info.title}</li>`);
+
+        const params = {
+            //mode: 'no-cors',
+            headers: {'content-type':'application/json'},
+            body: JSON.stringify({title: info.title}),
+            method: "POST" 
+        }
         
-        fetch(url, {body: {title : "Microsoft"}, method: "POST"
-        }).then(res => {
-            return res
+        fetch('https://reelnewsserver.azurewebsites.net/article', params).then(res => {
+            return res.json()
         }).then(data => {
-            document.write(`<li>${data[0]}</li>`)
+            for(var i = 0; i < data.length; i++) {
+                var str = "" + data[i][0] + '-' + data[i][2]
+                var link = str.link(data[i][1])
+                document.write(`<li>${link}</li>`) 
+                
+
+            }
+            
         }).catch(error=>{
             document.write(`<li>${error}</li>`)
         });  
 
-        document.write(`<ul>`);
+
+        document.write(`<ul>`)
+
+        
 
     })
 }
