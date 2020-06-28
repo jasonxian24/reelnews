@@ -29,8 +29,9 @@ var info = {
         fetch('https://reelnewsserver.azurewebsites.net/article', params).then(res => {
             return res.json()
         }).then(data => {
-            document.write(`<h1>The Other Side </h1>`);
-            document.write(`<p><em>Articles from across the aisle, powered by <img src="/icon/bing.png"> </em></p><br><br>`);
+            //document.write(`<p><span style="font-size:3em;margin-bottom:20px;">The Other Side</span><br><em>Articles from across the aisle, powered by <img src="/icon/bing.png"> </em><br></p>`);
+            document.write(`<p style="font-size:3em; padding-bottom:0; margin-bottom:0;">The Other Side </p>`);
+            document.write(`<p><em>Articles from across the aisle, powered by <img src="/icon/bing.png"> </em></p><hr>`);
             document.write(`<ul style="list-style:none;list-style-position: inside; padding-left:0;">`);
         
             for(var i = 0; i < data.length; i++) {
@@ -38,15 +39,16 @@ var info = {
                 str = str.substring(0, Math.min(str.length, 30 )) + "..."
                 var link = str.link(data[i][1])
                 document.write(`<li style=" margin-bottom: 10px;"><a href="${data[i][1]}" title="${data[i][0]}">${str}</a> | ${data[i][2]} </li>`) 
-                
+                document.write(`<ul style="list-style:none;list-style-position: inside; padding-left:20px;">
+                <li style=" margin-bottom: 10px;"><em>Leans Neutral</em></li></ul>`) 
 
             }
             document.write(`</ul>`);
             document.body.style.zIndex = 1;
-            document.body.style.width = "250px";
+            document.body.style.width = "300px";
             document.body.style.background = "#E6E6E6";
-            document.body.style.fontFamily = "Segoe UI";
-
+            document.body.style.fontFamily = "Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif";
+            
             var links = document.getElementsByTagName("a");
             for (var i = 0; i < links.length; i++) {
                 (function () {
