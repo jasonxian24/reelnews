@@ -40,7 +40,7 @@ var info = {
                 var link = str.link(data[i][1])
                 document.write(`<li style=" margin-bottom: 10px;"><a href="${data[i][1]}" title="${data[i][0]}">${str}</a> | ${data[i][2]} </li>`) 
                 document.write(`<ul style="list-style:none;list-style-position: inside; padding-left:20px;">
-                <li style=" margin-bottom: 10px;"><em>Leans Neutral</em></li></ul>`) 
+                <li style=" margin-bottom: 10px;"><em>${data[i][3]}</em></li></ul>`) 
 
             }
             document.write(`</ul>`);
