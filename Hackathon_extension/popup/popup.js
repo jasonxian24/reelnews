@@ -38,9 +38,19 @@ var info = {
                 var str = "" + data[i][0]
                 str = str.substring(0, Math.min(str.length, 30 )) + "..."
                 var link = str.link(data[i][1])
-                document.write(`<li style=" margin-bottom: 10px;"><a href="${data[i][1]}" title="${data[i][0]}">${str}</a> | ${data[i][2]} </li>`) 
+                var leaning_color = "#3104B4"
+                if(data[i][3] == "Left") {
+                    leaning_color = "#0000FF"
+                } else if(data[i][3] == "Leans Left") {
+                    leaning_color = "#58ACFA"
+                } else if(data[i][3] == "Leans Right") {
+                    leaning_color = "#F78181"
+                }  else if(data[i][3] == "Right") {
+                    leaning_color = "#FF0000"
+                } 
+                document.write(`<li style=" margin-bottom: 10px;"><a href="${data[i][1]}" title="${data[i][0]}">${str}</a>&nbsp&nbsp<span style="border-radius:10%; padding:5px; color:#FFFFFF; background:${leaning_color}">${data[i][3]}</span></li>`) 
                 document.write(`<ul style="list-style:none;list-style-position: inside; padding-left:20px;">
-                <li style=" margin-bottom: 10px;"><em>${data[i][3]}</em></li></ul>`) 
+                <li style=" margin-bottom: 10px;">${data[i][2]}</li></ul>`) 
 
             }
             document.write(`</ul>`);
